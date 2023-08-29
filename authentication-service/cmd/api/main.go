@@ -52,11 +52,13 @@ func main() {
 func openDB(dsn string) (*sql.DB, error) {
 	db, err := sql.Open("pgx", dsn)
 	if err != nil {
+		log.Println("line 55: ", err);
 		return nil, err
 	}
 
 	err = db.Ping()
 	if err != nil {
+		log.Println("line 61: ", err);
 		return nil, err
 	}
 
@@ -65,6 +67,7 @@ func openDB(dsn string) (*sql.DB, error) {
 
 func connectToDB() *sql.DB {
 	dsn := os.Getenv("DSN")
+	log.Println("line 70: dsn: ", dsn)
 
 	for {
 		connection, err := openDB(dsn)
